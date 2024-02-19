@@ -6,3 +6,8 @@ Developed to determine how the *Populus* microbiome shifts across natural gradie
 
 Associated with an R project with root project directory (`Argiroff_pnwgrad_2024.Rproj`)  
 
+### Dependencies  
+
+
+### Makefile  
+

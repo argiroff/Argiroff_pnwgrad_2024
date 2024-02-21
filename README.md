@@ -1,4 +1,4 @@
-# Project to characterize microbiome of Populus trichocarpa across environmental stress gradients  
+# Project to characterize microbiome of *Populus trichocarpa* across environmental stress gradients  
 
 **Author:** William Argiroff  
 

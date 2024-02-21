@@ -12,10 +12,10 @@ library(tidyverse)
 library(raster)
 
 # Create the limits for the grid
-grid_xmin <- -124  # 124 degrees W
+grid_xmin <- -125  # 124 degrees W
 grid_xmax <- -118 # 118 degrees W
-grid_ymin <- 40    # 40 degrees N 
-grid_ymax <- 50    # 50 degrees N
+grid_ymin <- 42    # 40 degrees N 
+grid_ymax <- 49    # 50 degrees N
 
 # Combine
 grid_extent <- extent(grid_xmin, grid_xmax, grid_ymin, grid_ymax)

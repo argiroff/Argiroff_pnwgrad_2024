@@ -48,6 +48,32 @@ $(BIOCLIM) : code/get_bioclim.R\
 		$$(CROP_WORLDCLIM)
 	code/get_bioclim.R $(CROP_WORLDCLIM) $@
 
+# Extract site-specific BioClim data
+SITE_BIOCLIM=data/bioclim/site_bioclim.txt
+
+$(SITE_BIOCLIM) : code/extract_site_bioclim.R\
+		$$(BIOCLIM)\
+		$$(SITE_COORD)
+	code/extract_site_bioclim.R $(BIOCLIM) $(SITE_COORD) $@
+
+# Plot mean annual temperature, max temp, and water balance
+BIOCLIM_FIG=figures/site_bioclim.pdf
+
+$(BIOCLIM_FIG) : code/make_site_bioclim_fig.R\
+		$$(SITE_BIOCLIM)
+	code/make_site_bioclim_fig.R $(SITE_BIOCLIM) $@
+
+# Map elevation mean annual temperature, max temp, and water balance
+BIOCLIM_MAP=figures/bioclim_maps.pdf
+
+$(BIOCLIM_MAP) : code/make_bioclim_maps.R\
+		$$(BIOCLIM)\
+		$$(SITE_COORD)
+	code/make_bioclim_maps.R $(BIOCLIM) $(SITE_COORD) $@
+
 bioclim : $(GET_WORLDCLIM) $(STACK_WORLDCLIM) $(SITE_COORD)\
-$(CROP_WORLDCLIM) $(BIOCLIM)
+$(CROP_WORLDCLIM) $(BIOCLIM) $(SITE_BIOCLIM) $(BIOCLIM_FIG)\
+$(BIOCLIM_MAP)
+
+
 

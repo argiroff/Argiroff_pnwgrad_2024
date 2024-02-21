@@ -43,7 +43,19 @@ new_coords <- read_tsv(clargs[1]) %>%
 
 # Combine with permanent sites
 coords <- read_tsv(clargs[2]) %>%
-  bind_rows(., new_coords)
+  bind_rows(., new_coords) %>%
+  
+  # Add transect
+  mutate(
+    transect = str_remove(site, "\\..*"),
+    transect = str_remove(transect, "[0-9]")
+  ) %>%
+  
+  relocate(
+    site,
+    state,
+    everything()
+  )
 
 # Save
 write_tsv(

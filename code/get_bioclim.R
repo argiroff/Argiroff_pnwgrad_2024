@@ -10,6 +10,7 @@ clargs <- commandArgs(trailingOnly = TRUE)
 
 library(tidyverse)
 library(dismo)
+library(raster)
 
 # Read in
 data_precip <- read_rds(clargs[1])
@@ -91,12 +92,13 @@ stdev_water <- sqrt(sumsquares2 / 12)
 bioclim_data <- list(
   data_bio,
   et,
+  data_elev,
   ann_water,
   stdev_water
 ) %>%
   
   set_names(
-    nm = c("bio_data", "evap_trans", "water_bal", "sd_water")
+    nm = c("bio_data", "evap_trans", "elev", "water_bal", "sd_water")
   )
 
 # Save

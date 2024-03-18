@@ -106,9 +106,6 @@ $(MANIFEST_ITS_OUT) : code/get_manifest.R\
 		$$(dir $$@)reads/
 	code/get_manifest.R $(dir $@)reads/ $@
 
-qiime2 : $(MANIFEST_16S_OUT) $(MANIFEST_16S_OUT)\
-$(IMPORT_16S_OUT) $(IMPORT_ITS_OUT)
-
 #### IMPORT fastq to qza using QIIME2 ####
 
 # 16S
@@ -242,3 +239,36 @@ MERGE_SEQS_ITS=data/qiime2/final_qzas/ITS/merged_representative_sequences.qza
 $(MERGE_SEQS_ITS) : code/merge_repseqs.sh\
 		$$(SEQS_ITS)
 	code/merge_repseqs.sh $(SEQS_ITS)
+
+#### Assign taxonomy ####
+
+# 16S
+TAX_16S=data/qiime2/final_qzas/16S/asv_taxonomy/
+
+$(TAX_16S) : code/assign_tax_16s_asv.sh\
+		data/qiime2/final_qzas/16S/merged_representative_sequences.qza\
+		data/qiime2/final_qzas/taxonomy/16S/silva-138-99-515-806-nb-classifier.qza
+	code/assign_tax_16s_asv.sh data/qiime2/final_qzas/16S/merged_representative_sequences.qza data/qiime2/final_qzas/taxonomy/16S/silva-138-99-515-806-nb-classifier.qza
+
+# ITS
+TAX_ITS=data/qiime2/final_qzas/ITS/asv_taxonomy/
+
+$(TAX_ITS) : code/assign_tax_its_asv.sh\
+		data/qiime2/final_qzas/ITS/merged_representative_sequences.qza\
+		data/qiime2/final_qzas/taxonomy/ITS/unite_train/unite_QZAs/unite_ver9_seqs_dynamic_29112022.qza\
+		data/qiime2/final_qzas/taxonomy/ITS/unite_train/unite_QZAs/unite_ver9_taxonomy_dynamic_29112022.qza
+	code/assign_tax_its_asv.sh data/qiime2/final_qzas/ITS/merged_representative_sequences.qza data/qiime2/final_qzas/taxonomy/ITS/unite_train/unite_QZAs/unite_ver9_seqs_dynamic_29112022.qza data/qiime2/final_qzas/taxonomy/ITS/unite_train/unite_QZAs/unite_ver9_taxonomy_dynamic_29112022.qza
+
+# qiime2 : $(MANIFEST_16S_OUT) $(MANIFEST_16S_OUT)\
+# $(IMPORT_16S_OUT) $(IMPORT_ITS_OUT)\
+# $(SUM_16S_OUT) $(SUM_ITS_OUT)\
+# $(TRIM_16S_OUT) $(TRIM_ITS_OUT)\
+# $(SUM_16S_TRIM) $(SUM_ITS_TRIM)\
+# $(DADA2_16S) $(DADA2_ITS)\
+# $(SUM_16S_DADA2) $(SUM_ITS_DADA2)\
+# $(MERGE_TAB_16S) $(MERGE_SEQS_ITS)
+
+qiime2 : $(MERGE_TAB_16S) $(MERGE_TAB_ITS)\
+$(MERGE_SEQS_16S) $(MERGE_SEQS_ITS)\
+$(TAX_ITS)
+

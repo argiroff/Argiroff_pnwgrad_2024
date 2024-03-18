@@ -46,7 +46,9 @@ plot(
   main = expression("Elevation (m)"),
   xlab = "Longitude",
   ylab = "Latitude",
-  xlim = c(-125, -117.5)
+  xlim = c(-125, -117.5),
+  cex.main = 2,
+  cex.lab = 2
   )
 
 points(
@@ -54,7 +56,7 @@ points(
   y = site_coords$lat,
   pch = site_coords$transect_shape,
   col = "white",
-  cex = 0.75
+  cex = 2
 )
 
 legend(
@@ -63,8 +65,8 @@ legend(
   legend = c("CR", "TR", "MR", "WC"),
   col="black",
   pch = c(1, 2, 0, 6),
-  cex = 0.75,
-  bty = "n"
+  cex = 1.25,
+  bg = "white"
 )
 
 # Mean annual temperature
@@ -74,7 +76,9 @@ plot(
   main = expression("Mean annual temperature ("*degree*C*")"),
   xlab="Longitude",
   ylab="Latitude",
-  xlim = c(-125, -117.5)
+  xlim = c(-125, -117.5),
+  cex.main = 2,
+  cex.lab = 2
 )
 
 points(
@@ -82,7 +86,7 @@ points(
   y = site_coords$lat,
   pch = site_coords$transect_shape,
   col = "white",
-  cex = 0.75
+  cex = 2
 )
 
 legend(
@@ -91,8 +95,8 @@ legend(
   legend = c("CR", "TR", "MR", "WC"),
   col="black",
   pch = c(1, 2, 0, 6),
-  cex = 0.75,
-  bty = "n"
+  cex = 1.25,
+  bg = "white"
 )
 
 # Max temperature
@@ -102,7 +106,9 @@ plot(
   main = expression("Temp. of warmest month ("*degree*C*")"),
   xlab="Longitude",
   ylab="Latitude",
-  xlim = c(-125, -117.5)
+  xlim = c(-125, -117.5),
+  cex.main = 2,
+  cex.lab = 2
 )
 
 points(
@@ -110,7 +116,7 @@ points(
   y = site_coords$lat,
   pch = site_coords$transect_shape,
   col = "white",
-  cex = 0.75
+  cex = 2
 )
 
 legend(
@@ -119,8 +125,8 @@ legend(
   legend = c("CR", "TR", "MR", "WC"),
   col="black",
   pch = c(1, 2, 0, 6),
-  cex = 0.75,
-  bty = "n"
+  cex = 1.25,
+  bg = "white"
 )
 
 # Annual water balance
@@ -130,7 +136,9 @@ plot(
   main = expression("Annual water balance ("*mm%.%y^-1*")"),
   xlab="Longitude",
   ylab="Latitude",
-  xlim = c(-125, -117.5)
+  xlim = c(-125, -117.5),
+  cex.main = 2,
+  cex.lab = 2
 )
 
 points(
@@ -138,7 +146,7 @@ points(
   y = site_coords$lat,
   pch = site_coords$transect_shape,
   col = "white",
-  cex = 0.75
+  cex = 2
 )
 
 legend(
@@ -147,8 +155,8 @@ legend(
   legend = c("CR", "TR", "MR", "WC"),
   col="black",
   pch = c(1, 2, 0, 6),
-  cex = 0.75,
-  bty = "n"
+  cex = 1.25,
+  bg = "white"
 )
 
 dev.off()

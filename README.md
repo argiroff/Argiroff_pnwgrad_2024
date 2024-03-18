@@ -11,3 +11,4 @@ Associated with an R project with root project directory (`Argiroff_pnwgrad_2024
 
 ### Makefile  
 
+Contains rules to reproduce all analyses.  
